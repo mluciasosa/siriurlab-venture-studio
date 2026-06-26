@@ -1,0 +1,70 @@
+{
+  "project_id": "proyecto-903-qa",
+  "project_name": "QA Fase D",
+  "mode": "create",
+  "current_phase": 3,
+  "status": "done",
+  "phases": {
+    "0": {
+      "agent": "explorador",
+      "status": "done",
+      "output_ref": "fase-0/output.md",
+      "handoff_ref": "fase-0/handoff.json",
+      "gate": null
+    },
+    "1": {
+      "agent": "cartografo",
+      "status": "done",
+      "output_ref": "fase-1/output.md",
+      "handoff_ref": "fase-1/handoff.json",
+      "gate": null
+    },
+    "2": {
+      "agent": "analista-negocio",
+      "status": "done",
+      "output_ref": "fase-2/output.md",
+      "handoff_ref": "fase-2/handoff.json",
+      "gate": "fase-2/gate-audit.md"
+    },
+    "3": {
+      "agent": "arquitecto-ux",
+      "status": "done",
+      "output_ref": "fase-3/output.md",
+      "handoff_ref": null,
+      "gate": "fase-3/gate-audit.md"
+    }
+  },
+  "pending_input_requests": [],
+  "gate_decisions": [
+    {
+      "decision_id": "gate-0-2-consolidado",
+      "covers_phases": [0, 1, 2],
+      "audits": [
+        { "skill": "10.A.1", "phase": 0, "result": "pass", "blockers": [] },
+        { "skill": "10.A.2", "phase": 1, "result": "pass", "blockers": [] },
+        { "skill": "10.A.3", "phase": 2, "result": "pass", "blockers": [] }
+      ],
+      "ceo_decision": "GO",
+      "iterar_target": null,
+      "decided_at": "2026-06-26T23:16:00Z",
+      "decided_by": "CEO"
+    },
+    {
+      "decision_id": "gate-3-reducido",
+      "covers_phases": [3],
+      "audits": [
+        {
+          "skill": "10.B.1",
+          "phase": 3,
+          "result": "pass",
+          "blockers": []
+        }
+      ],
+      "ceo_decision": "GO",
+      "iterar_target": null,
+      "decided_at": "2026-06-26T23:25:00Z",
+      "decided_by": "CEO"
+    }
+  ],
+  "updated_at": "2026-06-26T23:25:00Z"
+}

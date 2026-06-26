@@ -138,23 +138,23 @@ flowchart LR
 
 ### Piezas a construir
 
-- [ ] Crear `agents/5-arquitecto-ux/SKILL.md`.
-- [ ] Incluir solo subagentes 5.A y 5.B para MVP-1.
-- [ ] Documentar explicitamente que 5.C, 5.D y 5.E quedan fuera de scope.
-- [ ] Hacer que UX lea el scope desde `fase-2/output.md#scope-producto`.
-- [ ] Crear plantilla/anclas de `fase-3/output.md`: user journeys, arquitectura de informacion, wireframes.
-- [ ] Extender `agents/10-guardian/SKILL.md` con 10.B reducido.
-- [ ] Definir `fase-3/gate-audit.md` para coherencia UX sin WCAG, design system ni design handoff.
+- [x] Crear `agents/5-arquitecto-ux/SKILL.md`.
+- [x] Incluir solo subagentes 5.A y 5.B para MVP-1.
+- [x] Documentar explicitamente que 5.C, 5.D y 5.E quedan fuera de scope.
+- [x] Hacer que UX lea el scope desde `fase-2/output.md#scope-producto`.
+- [x] Crear plantilla/anclas de `fase-3/output.md`: user journeys, arquitectura de informacion, wireframes.
+- [x] Extender `agents/10-guardian/SKILL.md` con 10.B reducido.
+- [x] Definir `fase-3/gate-audit.md` para coherencia UX sin WCAG, design system ni design handoff.
 
 ### QA / Definition of Done
 
-- [ ] `scripts/validate-handoff.py` valida handoff 2->3 a la primera.
-- [ ] UX no pide `6.1` al Constructor; usa `#scope-producto` de fase 2.
-- [ ] `fase-3/output.md` contiene user journeys y wireframes.
-- [ ] `fase-3/output.md` no incluye alta fidelidad, accesibilidad completa ni design handoff.
-- [ ] `fase-3/gate-audit.md` audita coherencia entre problema validado, poblacion, scope y wireframes.
-- [ ] Gate 3 reducido no evalua WCAG ni design system.
-- [ ] `_cost-log.md` registra costo de fase 3.
+- [x] `scripts/validate-handoff.py` valida handoff 2->3 a la primera.
+- [x] UX no pide `6.1` al Constructor; usa `#scope-producto` de fase 2.
+- [x] `fase-3/output.md` contiene user journeys y wireframes.
+- [x] `fase-3/output.md` no incluye alta fidelidad, accesibilidad completa ni design handoff.
+- [x] `fase-3/gate-audit.md` audita coherencia entre problema validado, poblacion, scope y wireframes.
+- [x] Gate 3 reducido no evalua WCAG ni design system.
+- [x] `_cost-log.md` registra costo de fase 3.
 - [ ] QA aprobado por Lucía y registrado en `development/qa/fase-D.md`.
 
 ---

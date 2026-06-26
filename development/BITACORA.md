@@ -172,3 +172,50 @@ Se corrio QA Fase C sobre `proyecto-902-qa` con Fase 0 validada como fixture tec
 Detalle en `development/qa/fase-C.md`; criterios tecnicos marcados en ROADMAP.
 
 **Aprobacion Lucía (2026-06-26):** Fase C cerrada. Siguiente paso: Fase D (Arquitecto UX 5.A + 5.B y Gate 3 reducido).
+
+---
+
+## 2026-06-26 — Fase D: UX + Gate 3 reducido
+
+**Hecho:**
+
+- Se creo `agents/5-arquitecto-ux/SKILL.md`.
+- El Arquitecto UX quedo documentado con alcance reducido MVP-1:
+  - `5.A.1 user-journey-mapping`
+  - `5.B.1 wireframe-set`
+- Se documento explicitamente que quedan fuera de scope:
+  - 5.C Visual Designer
+  - 5.D Accessibility Auditor
+  - 5.E Design Handoff
+  - Agente 6 Constructor
+- Se definio que UX lee el scope desde `fase-2/output.md#scope-producto`, no desde `6.1`.
+- Se creo `agents/5-arquitecto-ux/plantilla-output.md` con anclas:
+  - `#user-journeys`
+  - `#wireframes`
+- Se extendio `agents/10-guardian/SKILL.md` con `10.B.1 ux-design-audit-reducido`.
+- Se creo `agents/10-guardian/plantilla-gate-audit-3.md` para `fase-3/gate-audit.md`.
+- Se marcaron en `development/ROADMAP.md` las piezas construidas de Fase D.
+
+**Decision relevante:**
+
+Fase 3 es terminal en MVP-1: el Arquitecto UX produce `fase-3/output.md` y no genera handoff hacia Constructor. El Gate 3 reducido audita coherencia entre problema, poblacion, scope, journeys y wireframes; no audita WCAG, design system, alta fidelidad ni handoff.
+
+El QA de Fase D se correra en una sesion aparte sobre `proyecto-903-qa`, con Fases 0-2 completas y Gate 0-2 en `GO`.
+
+**Estado:**
+
+Fase D construida. Pendiente: ejecutar QA de Fase D, registrar resultado en `development/qa/fase-D.md` y aprobacion de Lucía para cerrar la fase.
+
+**QA tecnico ejecutado:**
+
+Se corrio QA Fase D sobre `proyecto-903-qa` con Fases 0-2 como fixture tecnico y Gate 0-2 en `GO`. Resultados:
+
+- `2->3` devuelve `PASA: handoff valido`.
+- UX usa `fase-2/output.md#scope-producto` y no pide `6.1` al Constructor.
+- `fase-3/output.md` contiene `#user-journeys` y `#wireframes`.
+- No existe `fase-3/handoff.json`, correcto porque Fase 3 es terminal en MVP-1.
+- `fase-3/gate-audit.md` contiene Gate 3 reducido 10.B y audita coherencia UX.
+- Gate 3 reducido no evalua WCAG, design system ni handoff.
+- `_state.json` registra `gate_decisions[]` con `covers_phases: [3]`.
+
+Detalle en `development/qa/fase-D.md`; criterios tecnicos marcados en ROADMAP. Pendiente: aprobacion explicita de Lucia para cerrar Fase D.
