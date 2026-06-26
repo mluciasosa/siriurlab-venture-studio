@@ -1,0 +1,33 @@
+{
+  "handoff_version": "2.0",
+  "project_id": "proyecto-902-qa",
+  "from_agent": "analista-negocio",
+  "to_agent": "arquitecto-ux",
+  "transition": "2->3",
+  "required_by_destination": ["1.1", "1.2", "4.1", "4.scope"],
+  "outputs": [
+    {
+      "skill_id": "1.1",
+      "output_ref": "../fase-0/output.md#problema",
+      "type": "document"
+    },
+    {
+      "skill_id": "1.2",
+      "output_ref": "../fase-0/output.md#poblacion",
+      "type": "document"
+    },
+    {
+      "skill_id": "4.1",
+      "output_ref": "output.md#modelo-negocio",
+      "type": "document"
+    },
+    {
+      "skill_id": "4.scope",
+      "output_ref": "output.md#scope-producto",
+      "type": "document"
+    }
+  ],
+  "context_summary": "Problema: consultorios chicos pierden turnos por agenda manual y no-shows. Modelo: SaaS vertical liviano a USD 29/mes. Scope MVP: agenda semanal, recordatorios y reprogramación; Gate 0-2 pendiente con blocker simulado en GTM/pricing.",
+  "flags": ["GATE_0_2_PENDING", "QA_FIXTURE", "BLOCKER_SIMULADO_10A3"],
+  "created_at": "2026-06-26T22:55:00Z"
+}

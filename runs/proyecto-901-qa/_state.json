@@ -1,0 +1,52 @@
+{
+  "project_id": "proyecto-901-qa",
+  "project_name": "QA Fase B",
+  "mode": "create",
+  "current_phase": 0,
+  "status": "awaiting_input",
+  "phases": {
+    "0": {
+      "agent": "explorador",
+      "status": "awaiting_input",
+      "output_ref": "fase-0/output.md",
+      "handoff_ref": "fase-0/handoff.json",
+      "gate": null
+    },
+    "1": {
+      "agent": "cartografo",
+      "status": "pending",
+      "output_ref": null,
+      "handoff_ref": null,
+      "gate": null
+    },
+    "2": {
+      "agent": "analista-negocio",
+      "status": "pending",
+      "output_ref": null,
+      "handoff_ref": null,
+      "gate": null
+    },
+    "3": {
+      "agent": "arquitecto-ux",
+      "status": "pending",
+      "output_ref": null,
+      "handoff_ref": null,
+      "gate": null
+    }
+  },
+  "pending_input_requests": [
+    {
+      "request_id": "ir-001",
+      "from_agent": "explorador",
+      "phase": 0,
+      "needs": "5 entrevistas con dueños o recepcionistas de consultorios pequeños (1–3 profesionales) en LATAM",
+      "why_blocks": "no se puede confirmar hair-on-fire ni disposición a pagar sin validación primaria; research secundario muestra el problema pero no el lenguaje ni la urgencia percibida",
+      "format_expected": "notas, transcripciones o audios de entrevista",
+      "blocking": true,
+      "status": "pending",
+      "resolution": null
+    }
+  ],
+  "gate_decisions": [],
+  "updated_at": "2026-06-26T18:30:00Z"
+}

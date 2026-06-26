@@ -1,0 +1,97 @@
+---
+description: Contratos de handoff v2.0, validación 10.0, gates consolidados y gate_decisions
+globs: runs/**,contracts/**,scripts/**
+alwaysApply: false
+---
+
+# Venture Engine — Handoffs y Gates
+
+## Handoff v2.0
+
+Cada fase termina con `handoff.json`:
+
+- `required_by_destination`: skill IDs canónicos que el destino necesita
+- `outputs[]`: `{ skill_id, output_ref, type }` donde `output_ref` = `fase-N/output.md#ancla`
+- `context_summary`: 2-3 líneas, no duplicar el artefacto
+
+Antes de invocar el siguiente agente: correr `scripts/validate-handoff.py`.
+
+Debe verificar:
+
+1. Schema JSON válido
+2. Cada `skill_id` en `required_by_destination` presente en `outputs[]`
+3. Cada ancla referenciada **existe** en el markdown referenciado
+
+Si FALLA → corregir origen. El receptor NO arranca.
+
+## IDs de skills (canónicos)
+
+- Subagente cuando existe: `3.A.1`, `5.A.1`, `10.A.1`
+- Plano solo sin subagentes: `1.1`, `2.1`, `4.1`
+- Tabla plano↔subagente en `contracts/skill-io.md` — validate-handoff resuelve alias
+
+## Gate 0-2 consolidado (MVP-1)
+
+Al cerrar `fase-2`, el Guardián corre **tres auditorías separadas**:
+
+- 10.A.1 (problema/población — system phase 0)
+- 10.A.2 (mercado/viabilidad — system phase 1)
+- 10.A.3 (modelo de negocio/GTM — system phase 2)
+
+Escribe `fase-2/gate-audit.md` con las tres auditorías + recomendación consolidada.
+
+**NO colapsar** en una auditoría genérica — cada una mantiene sus criterios binarios.
+
+Flujo manual MVP-1:
+
+1. Guardián → `gate-audit.md`
+2. CEO revisa paquete completo (meta: ≤2 min)
+3. CEO registra en `_state.json` → `gate_decisions[]`
+4. Recién entonces invocar agente de fase-3
+
+Un bloqueante en cualquier audit **no es GO automático**.
+
+## Schema gate_decisions[] (portable MVP → autónomo)
+
+```json
+{
+  "decision_id": "gate-0-2-consolidado",
+  "covers_phases": [0, 1, 2],
+  "audits": [
+    { "skill": "10.A.1", "phase": 0, "result": "pass", "blockers": [] },
+    { "skill": "10.A.2", "phase": 1, "result": "pass", "blockers": [] },
+    { "skill": "10.A.3", "phase": 2, "result": "pass", "blockers": [] }
+  ],
+  "ceo_decision": "GO",
+  "iterar_target": null,
+  "decided_at": "2026-06-24T00:00:00Z",
+  "decided_by": "CEO"
+}
+```
+
+- `result` acepta: `pass`, `fail`, `partial`
+- ITERAR debe apuntar fase/skill concreta en `iterar_target`
+- En autónomo futuro: mismas entradas con `covers_phases: [0]`, `[1]`, `[2]` por separado
+
+## Gate 3 (MVP-1, reducido)
+
+Guardián 10.B audita solo:
+
+- User journeys (5.A) coherentes con problema validado (1.1) y población (1.2)
+- Wireframes (5.B) alineados con scope de `fase-2/#scope-producto` y flujo core
+- NO auditar WCAG, design system ni design handoff en MVP-1
+
+Flujo: Guardián recomienda → CEO firma → siguiente paso. Shifu skill 0.2 (gate-decision formal) diferido a automatización.
+
+## Modo audit (Girasol)
+
+- `_seed.md` con `mode: audit`
+- `_state.json` arranca en `current_phase` según seed
+- Output por fase = `gap-report.md` (esperado vs prototipo existente), no output normal
+- Prototipo como archivo en `runs/proyecto-NNN/`, no solo link
+
+## Métricas MVP-1
+
+- Meta encadenamiento: ≤1 edición manual de handoff por fase
+- Meta gate: decisión CEO en ≤2 min con paquete del Guardián
+- Medidor (Agente 9) fuera de scope: ningún gate MVP-1 exige métricas del Medidor

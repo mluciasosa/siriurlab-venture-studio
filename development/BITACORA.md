@@ -72,6 +72,10 @@ Fase A construida. Pendiente: ejecutar QA completo, registrar resultado en `deve
 
 Se intentaron ejecutar los comandos de QA con `python` y `py`, pero el entorno local no tiene Python disponible en PATH. La Fase A queda construida, pero no aprobada. Para cerrar la fase, instalar/habilitar Python 3 o correr los comandos documentados en una terminal con Python disponible.
 
+**QA tecnico ejecutado posteriormente:**
+
+Python quedo disponible (`Python 3.13.14`) y se ejecuto el QA tecnico de Fase A. Resultado: PASA. Se registro el detalle en `development/qa/fase-A.md` y se marcaron los criterios tecnicos en `development/ROADMAP.md`. Pendiente: aprobacion explicita de Lucia para cerrar Fase A.
+
 ---
 
 ## 2026-06-26 — Fase B: Shifu + Explorador
@@ -105,3 +109,66 @@ El handoff de Fase 0 usa referencias relativas al archivo `fase-0/handoff.json`,
 **Estado:**
 
 Fase B construida. Pendiente: ejecutar QA de Fase B cuando Python este disponible y registrar resultado en `development/qa/fase-B.md`. Fase B no queda aprobada hasta que Lucía corra y apruebe ese QA.
+
+**QA tecnico ejecutado:**
+
+Se corrio QA Fase B sobre `proyecto-901-qa`: Shifu produjo `plan-maestro.md` y `_state.json`; Explorador produjo `fase-0/output.md` y `handoff.json` con INPUT_REQUEST ir-001 y veredicto INCIERTO-NO-VALIDADO. `validate-handoff.py` devolvio PASA. Detalle en `development/qa/fase-B.md`; criterios tecnicos marcados en ROADMAP.
+
+**Aprobacion Lucía (2026-06-26):** Fase B cerrada. Siguiente paso: Fase C (Cartógrafo, Analista, Arquitecto de Negocio, Guardián Gate 0-2).
+
+---
+
+## 2026-06-26 — Fase C: cadena de decision + Gate 0-2
+
+**Hecho:**
+
+- Se creo `agents/2-cartografo/SKILL.md`.
+- El Cartografo quedo documentado con skills obligatorias:
+  - `2.1 competitive-landscape`
+  - `2.2 solution-research`
+- Se crearon plantillas de Cartografo:
+  - `agents/2-cartografo/plantilla-output.md`
+  - `agents/2-cartografo/plantilla-handoff.json`
+- Se creo `agents/3-analista/SKILL.md`.
+- El Analista quedo documentado con subagentes internos:
+  - `3.A.1 market-sizing-rigorous`
+  - `3.B.1 unit-economics-rigorous`
+  - `3.C.1 technical-feasibility-rigorous`
+  - `3.D.1 risk-analysis`
+- Se creo `agents/4-arquitecto-negocio/SKILL.md`.
+- Se definio que Negocio cierra `fase-2/` con:
+  - `4.1 business-model-design`
+  - `4.2 go-to-market-strategy`
+  - `4.scope product-scope`
+- Se creo la plantilla consolidada `agents/4-arquitecto-negocio/plantilla-output.md` para `fase-2/output.md`.
+- Se creo `agents/4-arquitecto-negocio/plantilla-handoff.json` para el handoff `2->3`.
+- Se creo `agents/10-guardian/SKILL.md` con:
+  - `10.0 inter-agent-handoff-validation`
+  - `10.A.1 business-problem-audit`
+  - `10.A.2 market-viability-audit`
+  - `10.A.3 business-model-audit`
+- Se creo `agents/10-guardian/plantilla-gate-audit.md` como paquete consolidado para CEO.
+- Se marcaron en `development/ROADMAP.md` las piezas construidas de Fase C.
+
+**Decision relevante:**
+
+La Fase C se construyo sin ejecutar QA. El QA se correra en una sesion aparte sobre `proyecto-902-qa`, con Fase 0 validada, para probar una cadena limpia `0->1->2` y el Gate 0-2 consolidado.
+
+**Estado:**
+
+Fase C construida. Pendiente: ejecutar QA de Fase C, registrar resultado en `development/qa/fase-C.md` y aprobacion de Lucía para cerrar la fase.
+
+**QA tecnico ejecutado:**
+
+Se corrio QA Fase C sobre `proyecto-902-qa` con Fase 0 validada como fixture tecnico. Resultados:
+
+- `0->1`, `1->2` y `2->3` devuelven `PASA: handoff valido`.
+- `fase-1/output.md` contiene `#mapa-competitivo`, `#research-soluciones` y `#gaps`.
+- `fase-2/output.md` contiene Analista completo, Negocio y `#scope-producto`.
+- `fase-2/gate-audit.md` contiene 10.A.1, 10.A.2 y 10.A.3 separadas.
+- Se simulo blocker en 10.A.3 y el gate quedo en `ITERAR`, sin GO automatico.
+- `_state.json` registra `gate_decisions[]` con `covers_phases: [0, 1, 2]`.
+
+Detalle en `development/qa/fase-C.md`; criterios tecnicos marcados en ROADMAP.
+
+**Aprobacion Lucía (2026-06-26):** Fase C cerrada. Siguiente paso: Fase D (Arquitecto UX 5.A + 5.B y Gate 3 reducido).

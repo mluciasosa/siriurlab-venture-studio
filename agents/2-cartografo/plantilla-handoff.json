@@ -1,0 +1,23 @@
+{
+  "handoff_version": "2.0",
+  "project_id": "[project_id]",
+  "from_agent": "cartografo",
+  "to_agent": "analista-negocio",
+  "transition": "1->2",
+  "required_by_destination": ["2.1", "2.2"],
+  "outputs": [
+    {
+      "skill_id": "2.1",
+      "output_ref": "output.md#mapa-competitivo",
+      "type": "document"
+    },
+    {
+      "skill_id": "2.2",
+      "output_ref": "output.md#research-soluciones",
+      "type": "document"
+    }
+  ],
+  "context_summary": "[Resumen de 2-3 lineas: categorias competitivas, patrones de solucion, gaps principales y flags relevantes.]",
+  "flags": ["[flags relevantes: INPUT_REQUEST_PENDING / EVIDENCIA_SECUNDARIA / etc.]"],
+  "created_at": "[ISO8601]"
+}

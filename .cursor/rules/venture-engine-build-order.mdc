@@ -1,0 +1,50 @@
+---
+description: Orden de construcción MVP-1 y Definition of Done por agente
+globs: agents/**
+alwaysApply: false
+---
+
+# Venture Engine — Orden de construcción MVP-1
+
+## PASO 1 — Base
+
+Esqueleto: `agents/`, `contracts/`, `runs/`, `scripts/`
+
+Contracts: `handoff-v2.schema.json`, `state.schema.json`, `skill-io.md` (+ plantillas sección/fase)
+
+Scripts: `new-project.py`, `validate-handoff.py`, `cost-report.py`
+
+## PASO 2 — Agentes (en este orden)
+
+1. `0-shifu` — kickoff, routing; NO protocolo de fase con carpeta
+2. `1-explorador` — skills 1.1, 1.2
+3. `2-cartografo` — 2.1 + 2.2 (ambas obligatorias)
+4. `3-analista` — subagentes 3.A, 3.B, 3.C, 3.D internos
+5. `4-arquitecto-negocio` — 4.1, 4.2 + scope producto; corre en fase-2 junto al Analista
+6. `10-guardian` — 10.0 transversal + 10.A (gates 0-2) + 10.B (gate 3 reducido)
+7. `5-arquitecto-ux` — solo 5.A + 5.B en MVP-1
+
+Nota: agentes 3 y 4 comparten `fase-2/` — un output consolidado, un handoff, un gate 0-2.
+
+## PASO 3 — Piloto Nubia Fase 0→2 + gate consolidado
+
+Manual en Cursor, fase por fase. `validate-handoff.py` tras cada handoff.
+
+## PASO 4 — Nubia Fase 3 + gate 3 reducido
+
+## Definition of Done por SKILL.md de agente
+
+- Identidad copiada de `knowledge/`
+- Skills listadas con IDs canónicos (subagente cuando existe)
+- Protocolo entrada/salida explícito
+- Reglas no negociables de la skill
+- Referencia a plantilla de output en `contracts/`
+- Sin lógica de infra (ClickUp, Postgres, APIs de terceros)
+
+## Fuera de scope MVP-1
+
+Agentes 6, 7, 8, 9. Subagentes UX 5.C, 5.D, 5.E. Shifu skill 0.2 (gate-decision formal). Constructor = MVP-2.
+
+## Segundo run (después de Nubia)
+
+Girasol en modo `audit` — gap-report por fase, arranque en fase del seed.

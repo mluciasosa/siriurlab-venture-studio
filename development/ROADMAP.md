@@ -47,15 +47,15 @@ flowchart LR
 
 ### QA / Definition of Done
 
-- [ ] `contracts/state.schema.json` parsea como JSON valido.
-- [ ] `contracts/handoff-v2.schema.json` parsea como JSON valido.
-- [ ] `scripts/new-project.py` crea un proyecto de prueba con `_seed.md` y `_state.json`.
-- [ ] El `_state.json` creado por `new-project.py` valida contra `state.schema.json`.
-- [ ] `scripts/validate-handoff.py` con fixture correcto devuelve PASA.
-- [ ] `scripts/validate-handoff.py` con `skill_id` faltante devuelve FALLA y nombra el skill faltante.
-- [ ] `scripts/validate-handoff.py` con ancla inexistente devuelve FALLA y nombra la ancla.
-- [ ] `scripts/cost-report.py` suma un `_cost-log.md` de fixture y devuelve costo por fase + total.
-- [ ] `contracts/skill-io.md` cubre todas las transiciones del MVP-1: 0->1, 1->2, 2->3.
+- [x] `contracts/state.schema.json` parsea como JSON valido.
+- [x] `contracts/handoff-v2.schema.json` parsea como JSON valido.
+- [x] `scripts/new-project.py` crea un proyecto de prueba con `_seed.md` y `_state.json`.
+- [x] El `_state.json` creado por `new-project.py` valida contra `state.schema.json`.
+- [x] `scripts/validate-handoff.py` con fixture correcto devuelve PASA.
+- [x] `scripts/validate-handoff.py` con `skill_id` faltante devuelve FALLA y nombra el skill faltante.
+- [x] `scripts/validate-handoff.py` con ancla inexistente devuelve FALLA y nombra la ancla.
+- [x] `scripts/cost-report.py` suma un `_cost-log.md` de fixture y devuelve costo por fase + total.
+- [x] `contracts/skill-io.md` cubre todas las transiciones del MVP-1: 0->1, 1->2, 2->3.
 - [ ] QA aprobado por Lucía y registrado en `development/qa/fase-A.md`.
 
 ---
@@ -79,14 +79,14 @@ flowchart LR
 
 ### QA / Definition of Done
 
-- [ ] Con un seed de prueba, Shifu produce `runs/[project]/plan-maestro.md`.
-- [ ] Shifu actualiza `_state.json` sin crear `fase-0/`.
-- [ ] Explorador produce `runs/[project]/fase-0/output.md` con todas las anclas requeridas.
-- [ ] Explorador produce `runs/[project]/fase-0/handoff.json` hacia Cartografo.
-- [ ] `scripts/validate-handoff.py` valida el handoff 0->1 a la primera.
-- [ ] Al simular falta de entrevistas primarias, Explorador no inventa validacion: crea `INPUT_REQUEST` y marca hair-on-fire INCIERTO/NO-VALIDADO.
-- [ ] `_cost-log.md` registra la corrida manual de Shifu/Explorador.
-- [ ] QA aprobado por Lucía y registrado en `development/qa/fase-B.md`.
+- [x] Con un seed de prueba, Shifu produce `runs/[project]/plan-maestro.md`.
+- [x] Shifu actualiza `_state.json` sin crear `fase-0/`.
+- [x] Explorador produce `runs/[project]/fase-0/output.md` con todas las anclas requeridas.
+- [x] Explorador produce `runs/[project]/fase-0/handoff.json` hacia Cartografo.
+- [x] `scripts/validate-handoff.py` valida el handoff 0->1 a la primera.
+- [x] Al simular falta de entrevistas primarias, Explorador no inventa validacion: crea `INPUT_REQUEST` y marca hair-on-fire INCIERTO/NO-VALIDADO.
+- [x] `_cost-log.md` registra la corrida manual de Shifu/Explorador.
+- [x] QA aprobado por Lucía y registrado en `development/qa/fase-B.md`.
 
 ---
 
@@ -98,35 +98,35 @@ flowchart LR
 
 ### Piezas a construir
 
-- [ ] Crear `agents/2-cartografo/SKILL.md`.
-- [ ] Incluir skills 2.1 `competitive-landscape` y 2.2 `solution-research` como obligatorias.
-- [ ] Crear plantilla/anclas de `fase-1/output.md`.
-- [ ] Crear `agents/3-analista/SKILL.md`.
-- [ ] Incluir subagentes 3.A, 3.B, 3.C y 3.D como ejecucion interna.
-- [ ] Crear `agents/4-arquitecto-negocio/SKILL.md`.
-- [ ] Incluir skills 4.1 `business-model-design` y 4.2 `go-to-market-strategy`.
-- [ ] Hacer que Agente 4 produzca el scope de producto en `fase-2/output.md#scope-producto`.
-- [ ] Definir `fase-2/output.md` consolidado: Analista completo -> Negocio -> scope de producto.
-- [ ] Crear o extender `agents/10-guardian/SKILL.md`.
-- [ ] Incluir skill transversal 10.0 `inter-agent-handoff-validation`.
-- [ ] Incluir 10.A.1, 10.A.2 y 10.A.3 como auditorias separadas.
-- [ ] Definir `fase-2/gate-audit.md` como paquete consolidado para CEO.
-- [ ] Definir escritura de `gate_decisions[]` con `covers_phases: [0, 1, 2]`.
+- [x] Crear `agents/2-cartografo/SKILL.md`.
+- [x] Incluir skills 2.1 `competitive-landscape` y 2.2 `solution-research` como obligatorias.
+- [x] Crear plantilla/anclas de `fase-1/output.md`.
+- [x] Crear `agents/3-analista/SKILL.md`.
+- [x] Incluir subagentes 3.A, 3.B, 3.C y 3.D como ejecucion interna.
+- [x] Crear `agents/4-arquitecto-negocio/SKILL.md`.
+- [x] Incluir skills 4.1 `business-model-design` y 4.2 `go-to-market-strategy`.
+- [x] Hacer que Agente 4 produzca el scope de producto en `fase-2/output.md#scope-producto`.
+- [x] Definir `fase-2/output.md` consolidado: Analista completo -> Negocio -> scope de producto.
+- [x] Crear o extender `agents/10-guardian/SKILL.md`.
+- [x] Incluir skill transversal 10.0 `inter-agent-handoff-validation`.
+- [x] Incluir 10.A.1, 10.A.2 y 10.A.3 como auditorias separadas.
+- [x] Definir `fase-2/gate-audit.md` como paquete consolidado para CEO.
+- [x] Definir escritura de `gate_decisions[]` con `covers_phases: [0, 1, 2]`.
 
 ### QA / Definition of Done
 
-- [ ] Handoff 0->1 ya aprobado sigue validando despues de agregar fase 1 y fase 2.
-- [ ] Cartografo produce `fase-1/output.md` con 2.1 y 2.2 presentes.
-- [ ] `scripts/validate-handoff.py` valida handoff 1->2 a la primera.
-- [ ] `fase-2/output.md` incluye secciones de Analista y Negocio en orden.
-- [ ] `fase-2/output.md#scope-producto` existe y es referenciable.
-- [ ] `fase-2/handoff.json` hacia UX referencia `#scope-producto`.
-- [ ] `fase-2/gate-audit.md` contiene 10.A.1, 10.A.2 y 10.A.3 como auditorias separadas.
-- [ ] Cada auditoria mantiene criterios binarios y bloqueantes propios.
-- [ ] `_state.json` puede registrar una decision con `covers_phases: [0, 1, 2]` y `audits[]`.
-- [ ] Al simular un bloqueante en 10.A.3, el paquete muestra el bloqueante y no habilita GO automatico.
-- [ ] `_cost-log.md` registra costos de fase 1 y fase 2.
-- [ ] QA aprobado por Lucía y registrado en `development/qa/fase-C.md`.
+- [x] Handoff 0->1 ya aprobado sigue validando despues de agregar fase 1 y fase 2.
+- [x] Cartografo produce `fase-1/output.md` con 2.1 y 2.2 presentes.
+- [x] `scripts/validate-handoff.py` valida handoff 1->2 a la primera.
+- [x] `fase-2/output.md` incluye secciones de Analista y Negocio en orden.
+- [x] `fase-2/output.md#scope-producto` existe y es referenciable.
+- [x] `fase-2/handoff.json` hacia UX referencia `#scope-producto`.
+- [x] `fase-2/gate-audit.md` contiene 10.A.1, 10.A.2 y 10.A.3 como auditorias separadas.
+- [x] Cada auditoria mantiene criterios binarios y bloqueantes propios.
+- [x] `_state.json` puede registrar una decision con `covers_phases: [0, 1, 2]` y `audits[]`.
+- [x] Al simular un bloqueante en 10.A.3, el paquete muestra el bloqueante y no habilita GO automatico.
+- [x] `_cost-log.md` registra costos de fase 1 y fase 2.
+- [x] QA aprobado por Lucía y registrado en `development/qa/fase-C.md`.
 
 ---
 

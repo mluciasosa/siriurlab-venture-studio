@@ -1,0 +1,23 @@
+{
+  "handoff_version": "2.0",
+  "project_id": "[project_id]",
+  "from_agent": "explorador",
+  "to_agent": "cartografo",
+  "transition": "0->1",
+  "required_by_destination": ["1.1", "1.2"],
+  "outputs": [
+    {
+      "skill_id": "1.1",
+      "output_ref": "output.md#problema",
+      "type": "document"
+    },
+    {
+      "skill_id": "1.2",
+      "output_ref": "output.md#poblacion",
+      "type": "document"
+    }
+  ],
+  "context_summary": "[Resumen de 2-3 lineas: problema, poblacion, estado hair-on-fire y flags relevantes.]",
+  "flags": ["[INCIERTO_NO_VALIDADO si faltan entrevistas primarias]"],
+  "created_at": "[ISO8601]"
+}

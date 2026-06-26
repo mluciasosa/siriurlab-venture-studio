@@ -1,0 +1,78 @@
+---
+description: Protocolo de entrada/salida de agentes — plantillas, inputs, prohibición de inventar datos
+globs: agents/**,runs/**
+alwaysApply: false
+---
+
+# Venture Engine — Protocolo I/O de Agentes
+
+## Antes de ejecutar (protocolo de entrada)
+
+1. Leer `runs/[project_id]/_state.json` — confirmar que la fase objetivo está `pending`.
+2. Leer `handoff.json` de la fase anterior (excepto Explorador: lee `plan-maestro.md`).
+3. Leer los `output.md` referenciados en el handoff (secciones por ancla).
+4. Cargar de `knowledge/` solo lo que la skill requiera.
+5. Validar INPUT obligatorio contra `contracts/skill-io.md`:
+   - Si falta un dato que **debería venir del handoff** → NO ejecutar. NO inventar, NO asumir, NO rellenar con placeholders.
+   - Si falta input del **mundo real** (entrevistas, accesos, legal, presupuesto) → escribir INPUT_REQUEST en `_state.json`, setear status `awaiting_input`, parar.
+
+## Formato INPUT_REQUEST (mínimo)
+
+```json
+{
+  "request_id": "ir-001",
+  "from_agent": "explorador",
+  "phase": 0,
+  "needs": "descripción concreta en una oración",
+  "why_blocks": "qué no puede continuar sin esto",
+  "format_expected": "archivo / acceso / texto / decisión",
+  "blocking": true,
+  "status": "pending",
+  "resolution": null
+}
+```
+
+## Al terminar (protocolo de salida)
+
+1. Escribir `runs/[project_id]/fase-[N]/output.md` respetando la **plantilla exacta** de la skill (secciones `─── TÍTULO ───` con ancla markdown correspondiente).
+2. Escribir `runs/[project_id]/fase-[N]/handoff.json` (contrato v2.0, referencias con anclas, no contenido inline).
+3. Actualizar `_state.json`: fase → `done`, siguiente → `pending`.
+4. Registrar tokens en `_cost-log.md` (fase, tokens_in, tokens_out, USD, notas).
+5. Si cierra un gate → status `awaiting_gate`; invocar Guardián. NO avanzar de fase sin gate aprobado.
+
+## Output consolidado con subagentes
+
+Cuando un agente tiene subagentes (3, 4, 5, 10), corre la secuencia interna y entrega **un solo** `output.md` por fase.
+
+No generar handoffs intermedios entre subagentes.
+
+## Fase 2 especial: Analista + Arq. Negocio
+
+En `fase-2/output.md` incluir en orden:
+
+1. Veredicto consolidado del Analista (3.A → 3.B → 3.C → 3.D)
+2. Modelo de negocio (4.1) + GTM (4.2)
+3. **Scope de producto** (equivalente a 6.1) con ancla `#scope-producto` — lo produce Negocio, no el Constructor
+
+Orden interno: Analista completo primero, luego Arq. Negocio.
+
+## Fase 3 UX (MVP-1): alcance reducido
+
+Ejecutar solo 5.A (investigación/IA) + 5.B (wireframes).
+
+NO ejecutar 5.C, 5.D, 5.E en MVP-1.
+
+Inputs de "6.1" → leer scope de `fase-2/output.md#scope-producto`.
+
+## Research e integridad de datos
+
+- Usar búsqueda web cuando esté disponible; citar URL + fecha de acceso.
+- Entrevistas primarias: INPUT_REQUEST, no inventar citas.
+- Sin evidencia de sufrimiento → hair-on-fire = INCIERTO/NO-VALIDADO con flag explícito.
+- Cada número tiene fuente. Cada supuesto, justificación.
+
+## Prohibiciones
+
+- NO inventar datos que deberían venir en el handoff.
+- NO saltear validate-handoff antes de cambiar de fase.
+- NO mezclar chat con estado: si no está en archivo, no existe para el siguiente agente.

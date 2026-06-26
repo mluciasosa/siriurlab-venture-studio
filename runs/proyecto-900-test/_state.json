@@ -1,0 +1,40 @@
+{
+  "project_id": "proyecto-900-test",
+  "project_name": "Test",
+  "mode": "create",
+  "current_phase": 0,
+  "status": "in_progress",
+  "phases": {
+    "0": {
+      "agent": "explorador",
+      "status": "pending",
+      "output_ref": null,
+      "handoff_ref": null,
+      "gate": null
+    },
+    "1": {
+      "agent": "cartografo",
+      "status": "pending",
+      "output_ref": null,
+      "handoff_ref": null,
+      "gate": null
+    },
+    "2": {
+      "agent": "analista-negocio",
+      "status": "pending",
+      "output_ref": null,
+      "handoff_ref": null,
+      "gate": null
+    },
+    "3": {
+      "agent": "arquitecto-ux",
+      "status": "pending",
+      "output_ref": null,
+      "handoff_ref": null,
+      "gate": null
+    }
+  },
+  "pending_input_requests": [],
+  "gate_decisions": [],
+  "updated_at": "2026-06-26T22:07:31Z"
+}

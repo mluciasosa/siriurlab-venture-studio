@@ -1,0 +1,61 @@
+---
+description: Principios core del SiriusLabs Venture Engine — monorepo, estado en archivos, fases y escalabilidad
+alwaysApply: true
+---
+
+# Venture Engine — Core
+
+## Qué es este repo
+
+Monorepo del SiriusLabs Venture Engine: 11 agentes (0–10) que llevan un venture de discovery a escala.
+
+Etapa actual: **MVP-1 de validación manual** en Cursor. Cero infra (sin Postgres, Inngest, ClickUp).
+
+El riesgo a validar es el **encadenamiento**, no la calidad aislada de cada skill.
+
+## Estructura del monorepo (raíz = este repo)
+
+- `knowledge/` — specs de agentes, skills y subagentes (fuente de verdad, solo lectura salvo actualización doc)
+- `agents/N-nombre/SKILL.md` — agentes ejecutables con protocolos I/O
+- `contracts/` — handoff-v2.schema.json, state.schema.json, skill-io.md, plantillas de sección por fase
+- `runs/proyecto-NNN-nombre/` — estado del proyecto = archivos versionados en git
+- `scripts/` — new-project.py, validate-handoff.py, cost-report.py
+
+## Principio de escalabilidad
+
+El protocolo I/O de cada agente **no cambia** cuando pase a autónomo.
+
+Hoy: vos invocás en Cursor, transporte = archivos en `runs/`.
+
+Mañana: Inngest + Postgres. El agente lee input y escribe output igual.
+
+## Fases del sistema (carpetas en runs/)
+
+- `fase-0/` — Explorador (Agente 1)
+- `fase-1/` — Cartógrafo (Agente 2): skills 2.1 + 2.2 obligatorias
+- `fase-2/` — Analista (3) + Arq. Negocio (4): output consolidado; gate 0-2 consolidado al cerrar
+- `fase-3/` — Arq. UX (5): solo subagentes 5.A + 5.B; gate 3 reducido
+
+Shifu (Agente 0) **no tiene carpeta de fase**. Produce `runs/[project]/plan-maestro.md` y actualiza `_state.json`.
+
+## Estado del proyecto
+
+La fuente de verdad es **archivos**, no el chat:
+
+- `runs/[project]/_seed.md` — semilla
+- `runs/[project]/_state.json` — fase actual, status, gate_decisions, pending_input_requests
+- `runs/[project]/plan-maestro.md` — kickoff Shifu (skill 0.1)
+- `runs/[project]/fase-N/output.md` — artefacto consolidado de la fase
+- `runs/[project]/fase-N/handoff.json` — contrato v2.0 hacia la siguiente fase
+- `runs/[project]/fase-N/gate-audit.md` — auditorías del Guardián (cuando aplica)
+- `runs/[project]/_cost-log.md` — tokens/USD por fase (entrada manual)
+
+Los gates son entradas en `_state.json`, no carpetas.
+
+## Reglas globales
+
+- Validación antes que construcción.
+- Un agente, un dominio. Shifu coordina, no ejecuta contenido de fase.
+- Skills puras: no integrar ClickUp, APIs externas ni side-effects dentro de SKILL.md.
+- Idioma: outputs en español neutro LATAM; citas de usuarios UY en rioplatense.
+- Doc canónica sin sufijo `(1)` en `knowledge/` — los duplicados `(1).md` no son fuente de verdad.

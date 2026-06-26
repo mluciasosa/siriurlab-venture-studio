@@ -1,0 +1,23 @@
+{
+  "handoff_version": "2.0",
+  "project_id": "proyecto-902-qa",
+  "from_agent": "cartografo",
+  "to_agent": "analista-negocio",
+  "transition": "1->2",
+  "required_by_destination": ["2.1", "2.2"],
+  "outputs": [
+    {
+      "skill_id": "2.1",
+      "output_ref": "output.md#mapa-competitivo",
+      "type": "document"
+    },
+    {
+      "skill_id": "2.2",
+      "output_ref": "output.md#research-soluciones",
+      "type": "document"
+    }
+  ],
+  "context_summary": "El mercado ya tiene agendas médicas y herramientas generales, pero consultorios pequeños siguen usando WhatsApp, calendario y procesos manuales. La oportunidad es un SaaS liviano de agenda y recordatorios WhatsApp, con privacidad acotada y onboarding rápido.",
+  "flags": ["QA_FIXTURE", "EVIDENCIA_SECUNDARIA"],
+  "created_at": "2026-06-26T22:45:00Z"
+}

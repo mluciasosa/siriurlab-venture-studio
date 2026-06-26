@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://siriuslabs.local/venture-engine/handoff-v2.schema.json",
+  "title": "Venture Engine Handoff v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "handoff_version",
+    "project_id",
+    "from_agent",
+    "to_agent",
+    "required_by_destination",
+    "outputs",
+    "context_summary",
+    "flags",
+    "created_at"
+  ],
+  "properties": {
+    "handoff_version": {
+      "type": "string",
+      "const": "2.0"
+    },
+    "project_id": {
+      "type": "string",
+      "pattern": "^proyecto-[0-9]{3}-[a-z0-9-]+$"
+    },
+    "from_agent": {
+      "type": "string"
+    },
+    "to_agent": {
+      "type": "string"
+    },
+    "transition": {
+      "type": "string",
+      "pattern": "^[0-6]->[0-6]$"
+    },
+    "required_by_destination": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "outputs": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/output_ref" },
+      "minItems": 1
+    },
+    "context_summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "flags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "$defs": {
+    "output_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["skill_id", "output_ref", "type"],
+      "properties": {
+        "skill_id": {
+          "type": "string"
+        },
+        "output_ref": {
+          "type": "string",
+          "pattern": "^.+\\.md#[a-z0-9-]+$"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["document", "report", "audit", "gap-report"]
+        }
+      }
+    }
+  }
+}

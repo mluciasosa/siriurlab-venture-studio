@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://siriuslabs.local/venture-engine/state.schema.json",
+  "title": "Venture Engine Project State",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "project_id",
+    "mode",
+    "current_phase",
+    "status",
+    "phases",
+    "pending_input_requests",
+    "gate_decisions",
+    "updated_at"
+  ],
+  "properties": {
+    "project_id": {
+      "type": "string",
+      "pattern": "^proyecto-[0-9]{3}-[a-z0-9-]+$"
+    },
+    "project_name": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["create", "audit"]
+    },
+    "current_phase": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 6
+    },
+    "status": {
+      "type": "string",
+      "enum": ["in_progress", "awaiting_gate", "awaiting_input", "done", "killed"]
+    },
+    "phases": {
+      "type": "object",
+      "required": ["0", "1", "2", "3"],
+      "additionalProperties": {
+        "$ref": "#/$defs/phase"
+      },
+      "properties": {
+        "0": { "$ref": "#/$defs/phase" },
+        "1": { "$ref": "#/$defs/phase" },
+        "2": { "$ref": "#/$defs/phase" },
+        "3": { "$ref": "#/$defs/phase" }
+      }
+    },
+    "pending_input_requests": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/input_request"
+      }
+    },
+    "gate_decisions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/gate_decision"
+      }
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "$defs": {
+    "phase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["agent", "status", "output_ref", "handoff_ref", "gate"],
+      "properties": {
+        "agent": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "in_progress", "done", "awaiting_gate", "awaiting_input", "skipped"]
+        },
+        "output_ref": {
+          "type": ["string", "null"]
+        },
+        "handoff_ref": {
+          "type": ["string", "null"]
+        },
+        "gate": {
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "input_request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "request_id",
+        "from_agent",
+        "phase",
+        "needs",
+        "why_blocks",
+        "format_expected",
+        "blocking",
+        "status",
+        "resolution"
+      ],
+      "properties": {
+        "request_id": { "type": "string" },
+        "from_agent": { "type": "string" },
+        "phase": { "type": "integer", "minimum": 0, "maximum": 6 },
+        "needs": { "type": "string" },
+        "why_blocks": { "type": "string" },
+        "format_expected": { "type": "string" },
+        "blocking": { "type": "boolean" },
+        "status": { "type": "string", "enum": ["pending", "resolved", "cancelled"] },
+        "resolution": { "type": ["string", "null"] }
+      }
+    },
+    "gate_decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision_id",
+        "covers_phases",
+        "audits",
+        "ceo_decision",
+        "iterar_target",
+        "decided_at",
+        "decided_by"
+      ],
+      "properties": {
+        "decision_id": { "type": "string" },
+        "covers_phases": {
+          "type": "array",
+          "items": { "type": "integer", "minimum": 0, "maximum": 6 },
+          "minItems": 1
+        },
+        "audits": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/gate_audit" }
+        },
+        "ceo_decision": {
+          "type": "string",
+          "enum": ["GO", "ITERAR", "KILL"]
+        },
+        "iterar_target": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "properties": {
+            "phase": { "type": "integer", "minimum": 0, "maximum": 6 },
+            "skill": { "type": "string" },
+            "reason": { "type": "string" }
+          }
+        },
+        "decided_at": { "type": "string", "format": "date-time" },
+        "decided_by": { "type": "string" }
+      }
+    },
+    "gate_audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["skill", "phase", "result", "blockers"],
+      "properties": {
+        "skill": { "type": "string" },
+        "phase": { "type": "integer", "minimum": 0, "maximum": 6 },
+        "result": { "type": "string", "enum": ["pass", "fail", "partial"] },
+        "blockers": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

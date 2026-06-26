@@ -1,0 +1,76 @@
+{
+  "project_id": "proyecto-902-qa",
+  "project_name": "QA Fase C",
+  "mode": "create",
+  "current_phase": 2,
+  "status": "in_progress",
+  "phases": {
+    "0": {
+      "agent": "explorador",
+      "status": "done",
+      "output_ref": "fase-0/output.md",
+      "handoff_ref": "fase-0/handoff.json",
+      "gate": null
+    },
+    "1": {
+      "agent": "cartografo",
+      "status": "done",
+      "output_ref": "fase-1/output.md",
+      "handoff_ref": "fase-1/handoff.json",
+      "gate": null
+    },
+    "2": {
+      "agent": "analista-negocio",
+      "status": "in_progress",
+      "output_ref": "fase-2/output.md",
+      "handoff_ref": "fase-2/handoff.json",
+      "gate": "fase-2/gate-audit.md"
+    },
+    "3": {
+      "agent": "arquitecto-ux",
+      "status": "pending",
+      "output_ref": null,
+      "handoff_ref": null,
+      "gate": null
+    }
+  },
+  "pending_input_requests": [],
+  "gate_decisions": [
+    {
+      "decision_id": "gate-0-2-consolidado",
+      "covers_phases": [0, 1, 2],
+      "audits": [
+        {
+          "skill": "10.A.1",
+          "phase": 0,
+          "result": "pass",
+          "blockers": []
+        },
+        {
+          "skill": "10.A.2",
+          "phase": 1,
+          "result": "partial",
+          "blockers": []
+        },
+        {
+          "skill": "10.A.3",
+          "phase": 2,
+          "result": "fail",
+          "blockers": [
+            "Falta diferenciacion real de planes/pricing",
+            "Falta fijar validacion chica de USD 500 antes de gasto mayor"
+          ]
+        }
+      ],
+      "ceo_decision": "ITERAR",
+      "iterar_target": {
+        "phase": 2,
+        "skill": "4.2",
+        "reason": "Completar pricing y validacion chica antes de habilitar UX"
+      },
+      "decided_at": "2026-06-26T23:00:00Z",
+      "decided_by": "CEO"
+    }
+  ],
+  "updated_at": "2026-06-26T23:00:00Z"
+}
