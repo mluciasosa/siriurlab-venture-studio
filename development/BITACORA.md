@@ -71,3 +71,37 @@ Fase A construida. Pendiente: ejecutar QA completo, registrar resultado en `deve
 **QA tecnico intentado:**
 
 Se intentaron ejecutar los comandos de QA con `python` y `py`, pero el entorno local no tiene Python disponible en PATH. La Fase A queda construida, pero no aprobada. Para cerrar la fase, instalar/habilitar Python 3 o correr los comandos documentados en una terminal con Python disponible.
+
+---
+
+## 2026-06-26 — Fase B: Shifu + Explorador
+
+**Hecho:**
+
+- Se creo `agents/0-shifu/SKILL.md`.
+- Shifu quedo documentado como orquestador sin carpeta de fase.
+- Shifu ejecuta en MVP-1:
+  - `0.1 project-kickoff`
+  - `0.3 task-routing`
+- Se dejo fuera de scope `0.2 gate-decision`, diferido a automatizacion.
+- Se definio la plantilla de `plan-maestro.md` dentro del `SKILL.md` de Shifu.
+- Se creo `agents/1-explorador/SKILL.md`.
+- El Explorador quedo documentado con skills:
+  - `1.1 problem-discovery`
+  - `1.2 population-profiling`
+- Se creo `agents/1-explorador/plantilla-output.md` con anclas:
+  - `#problema`
+  - `#poblacion`
+  - `#hair-on-fire`
+  - `#fuentes`
+- Se creo `agents/1-explorador/plantilla-handoff.json` para el handoff `0->1`.
+- Se documento el comportamiento ante falta de entrevistas primarias: `INPUT_REQUEST`, `awaiting_input`, hair-on-fire `INCIERTO/NO-VALIDADO`.
+- Se marcaron en `development/ROADMAP.md` las piezas construidas de Fase B.
+
+**Decision relevante:**
+
+El handoff de Fase 0 usa referencias relativas al archivo `fase-0/handoff.json`, por ejemplo `output.md#problema`, para que `scripts/validate-handoff.py` pueda resolver las anclas desde la carpeta de la fase.
+
+**Estado:**
+
+Fase B construida. Pendiente: ejecutar QA de Fase B cuando Python este disponible y registrar resultado en `development/qa/fase-B.md`. Fase B no queda aprobada hasta que Lucía corra y apruebe ese QA.

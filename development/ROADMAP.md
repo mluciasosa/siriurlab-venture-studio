@@ -68,14 +68,14 @@ flowchart LR
 
 ### Piezas a construir
 
-- [ ] Crear `agents/0-shifu/SKILL.md`.
-- [ ] Implementar en `0-shifu` el protocolo MVP de kickoff: leer seed, producir `plan-maestro.md`, actualizar `_state.json`.
-- [ ] Documentar que Shifu no tiene carpeta de fase.
-- [ ] Crear `agents/1-explorador/SKILL.md`.
-- [ ] Incluir skills 1.1 `problem-discovery` y 1.2 `population-profiling`.
-- [ ] Crear plantilla/anclas de `fase-0/output.md`: `#problema`, `#poblacion`, `#hair-on-fire`, `#fuentes`.
-- [ ] Definir handoff 0->1 hacia Cartografo con outputs requeridos.
-- [ ] Documentar comportamiento ante input real faltante: `INPUT_REQUEST`, status `awaiting_input`, hair-on-fire INCIERTO/NO-VALIDADO.
+- [x] Crear `agents/0-shifu/SKILL.md`.
+- [x] Implementar en `0-shifu` el protocolo MVP de kickoff: leer seed, producir `plan-maestro.md`, actualizar `_state.json`.
+- [x] Documentar que Shifu no tiene carpeta de fase.
+- [x] Crear `agents/1-explorador/SKILL.md`.
+- [x] Incluir skills 1.1 `problem-discovery` y 1.2 `population-profiling`.
+- [x] Crear plantilla/anclas de `fase-0/output.md`: `#problema`, `#poblacion`, `#hair-on-fire`, `#fuentes`.
+- [x] Definir handoff 0->1 hacia Cartografo con outputs requeridos.
+- [x] Documentar comportamiento ante input real faltante: `INPUT_REQUEST`, status `awaiting_input`, hair-on-fire INCIERTO/NO-VALIDADO.
 
 ### QA / Definition of Done
 
